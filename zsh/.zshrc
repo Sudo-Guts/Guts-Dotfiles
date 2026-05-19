@@ -70,8 +70,8 @@ export ZSH="$HOME/.oh-my-zsh"
         local TERMWIDTH
         (( TERMWIDTH = ${COLUMNS} - 1 ))
 
-        if (( promtsize + pwdsize > TERMWIDTH )); then
-            (( PR_PWDLEN = TERMWIDTH - promtsize ))
+        if (( promptsize + pwdsize > TERMWIDTH )); then
+            (( PR_PWDLEN = TERMWIDTH - promptsize ))
         else
             PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
         fi
