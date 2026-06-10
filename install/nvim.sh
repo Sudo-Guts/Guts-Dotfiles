@@ -25,45 +25,54 @@
 #│           ├── keymaps.lua
 #│           └── lazy.lua
 # =============================================================================
-
-set -e  # Detener si hay error
+set -e
 
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-# Detectar directorio raíz de los dotfiles (el que contiene la carpeta install/)
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-echo -e "${GREEN}📦 Instalando Neovim (desde apt)...${NC}"
+echo -e "${GREEN}📦 Instalando Neovim (última versión estable)...${NC}"
 
 # -----------------------------------------------------------------------------
-# 1. Instalar Neovim desde repositorios
+# 1. Instalar Neovim desde AppImage (última versión estable)
 # -----------------------------------------------------------------------------
-
 if command -v nvim &>/dev/null; then
-    echo -e "${YELLOW}   Neovim ya instalado, saltando instalación.${NC}"
+    CURRENT_VERSION=$(nvim --version | head -1 | cut -d' ' -f2)
+    echo -e "${YELLOW}   Neovim ya instalado (versión $CURRENT_VERSION), saltando.${NC}"
+    echo -e "${YELLOW}   Para forzar reinstalación, elimina /usr/local/bin/nvim y vuelve a ejecutar.${NC}"
 else
-    sudo apt update -y
-    sudo apt install -y neovim
+    echo "   Descargando la última versión estable de Neovim..."
+    sudo mkdir -p /opt/nvim
+    
+    # Descargar AppImage
+    sudo wget -O /opt/nvim/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+    sudo chmod +x /opt/nvim/nvim.appimage
+    
+    # Crear enlace simbólico en /usr/local/bin
+    sudo ln -sf /opt/nvim/nvim.appimage /usr/local/bin/nvim
+    
     echo "   Neovim instalado correctamente."
 fi
 
 # -----------------------------------------------------------------------------
-# 2. Crear enlace simbólico de la configuración
+# 2. Verificar la instalación
 # -----------------------------------------------------------------------------
+echo -e "${GREEN}✅ Neovim instalado: $(nvim --version | head -1)${NC}"
 
+# -----------------------------------------------------------------------------
+# 3. Crear directorio de configuración y enlazar archivos
+# -----------------------------------------------------------------------------
 NVIM_CONFIG_TARGET="${HOME}/.config/nvim"
 NVIM_CONFIG_SOURCE="${DOTFILES}/nvim"
 
-# Verificar que la fuente existe
 if [[ ! -d "$NVIM_CONFIG_SOURCE" ]]; then
     echo -e "${YELLOW}⚠️  No se encuentra la configuración en ${NVIM_CONFIG_SOURCE}${NC}"
     echo "   Asegúrate de tener tus archivos (init.lua, lua/, etc.) en ~/.dotfiles/nvim/"
     exit 1
 fi
 
-# Función segura para enlazar
 safe_link() {
     local src="$1"
     local dst="$2"
@@ -82,7 +91,7 @@ echo -e "${GREEN}🔗 Enlazando configuración de Neovim...${NC}"
 safe_link "$NVIM_CONFIG_SOURCE" "$NVIM_CONFIG_TARGET"
 
 # -----------------------------------------------------------------------------
-# 3. Mensaje final sobre lazy.nvim
+# 4. Mensaje final
 # -----------------------------------------------------------------------------
 echo -e "${GREEN}✅ Neovim configurado correctamente.${NC}"
-echo -e "${YELLOW}📌 Nota: La primera vez que abras nvim, lazy.nvim se instalará automáticamente y descargará tus plugins. Ten paciencia.${NC}"
+echo -e "${YELLOW}📌 Nota: La primera vez que abras nvim, lazy.nvim se instalará automáticamente.${NC}"

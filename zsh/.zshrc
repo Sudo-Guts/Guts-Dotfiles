@@ -125,6 +125,8 @@ RPROMPT='%F{magenta}[%f $(GITIF)$(git_prompt_info)$(git_prompt_status) %F{magent
 
 alias zsh='nvim .zshrc'
 alias kitty='nvim .config/kitty/kitty.conf'
-source /home/digitales/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias neovim='cd .config/nvim'
+alias dotfiles='cd .dotfiles'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=$HOME/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/latest/bin:$PATH
+export RISCV=$HOME/riscv

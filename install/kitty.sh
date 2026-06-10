@@ -32,5 +32,3 @@ fi
 # 2. Mensaje sobre la configuración
 # -----------------------------------------------------------------------------
 echo -e "${GREEN}✅ Kitty instalado correctamente.${NC}"
-echo -e "${YELLOW}📌 Si tienes archivos de configuración en ~/.dotfiles/kitty/, el bootstrap los enlazará a ~/.config/kitty/.${NC}"
-echo -e "${YELLOW}   Para personalizarlo, crea ~/.dotfiles/kitty/kitty.conf y ejecuta el bootstrap.${NC}"
