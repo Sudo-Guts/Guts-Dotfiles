@@ -18,6 +18,12 @@ Mis dotfiles personales para configurar rápidamente un entorno de desarrollo en
 - Tener instalado `git` y `curl` (se instalan automáticamente con `common.sh` si no existen)
 - Conexión a Internet
 
+## 🙏 Agradecimientos
+
+- [shaky.sh – Simple dotfiles](https://shaky.sh/simple-dotfiles/) por la inspiración en el diseño del `bootstrap.sh`.
+- [getnf](https://github.com/getnf/getnf) para instalar fuentes Nerd Fonts de forma sencilla.
+- [lazy.nvim](https://github.com/folke/lazy.nvim) y [Oh My Zsh](https://ohmyz.sh/) por hacer que mi flujo de trabajo sea más productivo.
+
 ## 🚀 Instalación
 
 ```bash
@@ -31,9 +37,9 @@ cd ~/.dotfiles
 chmod +x install/*.sh
 ./install/bootstrap.sh
 
----
-## 🙏 Agradecimientos
 
-- [shaky.sh – Simple dotfiles](https://shaky.sh/simple-dotfiles/) por la inspiración en el diseño del `bootstrap.sh`.
-- [getnf](https://github.com/getnf/getnf) para instalar fuentes Nerd Fonts de forma sencilla.
-- [lazy.nvim](https://github.com/folke/lazy.nvim) y [Oh My Zsh](https://ohmyz.sh/) por hacer que mi flujo de trabajo sea más productivo.
+
+
+
+
+
