@@ -3,10 +3,10 @@ local opts = { noremap = true, silent = true }
 local builtin = require('telescope.builtin')
 
 -- Select all
-    keymap.set("n", "<C-a>", "gg<S-v>G")
+    keymap.set( 'n', '<C-a>', 'gg<S-v>G')
     
 -- Save and exit
-    keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+--  keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
     keymap.set( 'n' , '<space>s' , ':x!<CR>' , opts )
     
 -- Scroll

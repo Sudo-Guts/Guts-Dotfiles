@@ -9,7 +9,7 @@ return{
                 spacing = 3, -- spacing between columns
                 align = "center", -- align columns left, center or right
             },
-            window = {
+            win = {
                 border = "single", -- none, single, double, shadow
                 position = "bottom", -- bottom, top
                 margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
