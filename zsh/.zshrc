@@ -123,10 +123,10 @@ RPROMPT='%F{magenta}[%f $(GITIF)$(git_prompt_info)$(git_prompt_status) %F{magent
 
 # /~~~>[ Alias ]<------------------------------\
 
-alias zsh='nvim .zshrc'
-alias kitty='nvim .config/kitty/kitty.conf'
-alias neovim='cd .config/nvim'
-alias dotfiles='cd .dotfiles'
+alias zsh='nvim ~/.zshrc'
+alias kitty='nvim ~/.config/kitty/kitty.conf'
+alias neovim='cd ~/.config/nvim'
+alias dotfiles='cd ~/.dotfiles'
 
 export PATH=$HOME/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/latest/bin:$PATH
-export RISCV=$HOME/riscv
+export RISCV=$HOME/riscv-lab/riscv

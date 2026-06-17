@@ -1,5 +1,9 @@
 local opt = vim.opt
 
+opt.timeout = true
+opt.timeoutlen = 1000
+opt.ttimeoutlen = 50
+
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.number= true
