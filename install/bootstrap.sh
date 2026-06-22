@@ -77,6 +77,8 @@ run_installer "zsh"
 # kitty.sh: Terminal Kitty
 run_installer "kitty"
 
+run_installer "docker"
+
 # fonts.sh: Nerd Fonts
 run_installer "fonts"
 

@@ -18,8 +18,20 @@ opt.cmdheight = 1
 opt.laststatus = 3
 opt.expandtab = true
 opt.tabstop = 4
-opt.shiftwidth=0
-opt.softtabstop=0
-opt.mouse = ""
+opt.shiftwidth = 0
+opt.softtabstop = 0
+opt.mouse = "a"
 opt.smarttab = true
 opt.termguicolors = true
+opt.backspace = { "start", "eol", "indent" }
+opt.fileformat = "unix"
+
+
+
+
+
+
+
+
+
+
