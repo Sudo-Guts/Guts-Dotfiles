@@ -55,6 +55,10 @@ fi
 # Directorio temporal
 WORKDIR="/tmp/riscv_build"
 mkdir -p "$WORKDIR"
+
+# Limpiar posibles residuos de ejecuciones anteriores
+rm -rf "$WORKDIR"/*
+
 cd "$WORKDIR"
 
 # 1. Dependencias del sistema
@@ -75,9 +79,13 @@ chown -R "$SUDO_USER":"$SUDO_USER" "$RISCV"
 
 # 3. Clonar y compilar la toolchain (newlib)
 print_step "Clonando riscv-gnu-toolchain..."
+if [ -d "riscv-gnu-toolchain" ]; then
+    echo "   El directorio riscv-gnu-toolchain ya existe. Eliminando..."
+    rm -rf riscv-gnu-toolchain
+fi
 git clone --depth 1 https://github.com/riscv/riscv-gnu-toolchain
-cd riscv-gnu-toolchain
 
+cd riscv-gnu-toolchain
 print_step "Configurando toolchain para bare-metal (newlib)..."
 ./configure --prefix="$RISCV" --with-arch=rv64imafdc --with-abi=lp64d
 print_step "Compilando toolchain (esto puede tomar 30-60 minutos)..."
@@ -98,7 +106,11 @@ fi
 
 # 5. Clonar y compilar Spike
 print_step "Clonando Spike..."
+if [ -d "riscv-isa-sim" ]; then
+    rm -rf riscv-isa-sim
+fi
 git clone --depth 1 https://github.com/riscv-software-src/riscv-isa-sim
+
 cd riscv-isa-sim
 mkdir -p build
 cd build
@@ -112,7 +124,11 @@ cd "$WORKDIR"
 
 # 6. Clonar y compilar Proxy Kernel (pk)
 print_step "Clonando Proxy Kernel (pk)..."
+if [ -d "riscv-pk" ]; then
+    rm -rf riscv-pk
+fi
 git clone --depth 1 https://github.com/riscv-software-src/riscv-pk
+
 cd riscv-pk
 mkdir -p build
 cd build

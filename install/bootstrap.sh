@@ -126,7 +126,7 @@ run_optional_installer "riscv" "¿Deseas instalar el entorno de desarrollo RISC-
 # Creamos enlaces desde ~/.config/ o ~/ según corresponda.
 echo -e "${GREEN}🔗 Creando enlaces simbólicos de configuración...${NC}"
 
-# Función segura para enlazar archivos/carpetas
+#Función segura para enlazar archivos/carpetas
 safe_link() {
     local src="$1"
     local dst="$2"

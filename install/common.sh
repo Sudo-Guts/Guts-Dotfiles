@@ -16,7 +16,7 @@ sudo apt upgrade -y
 sudo apt install -y curl git wget unzip
 
 # Instalar tree
-sudo apt install tree -yt
+sudo apt install tree -y
 
 # Configurar hora local (para dual boot con Windows)
 sudo timedatectl set-local-rtc 1 --adjust-system-clock
