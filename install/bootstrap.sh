@@ -62,6 +62,38 @@ run_installer() {
 }
 
 # -----------------------------------------------------------------------------
+# Función para ejecutar un instalador opcional con pregunta al usuario
+# -----------------------------------------------------------------------------
+run_optional_installer() {
+    local script_name="$1"
+    local prompt_message="${2:-¿Deseas instalar $script_name?}"
+    local script_path="${INSTALL_DIR}/${script_name}.sh"
+
+    if [[ -f "$script_path" ]]; then
+        if ask_yes_no "$prompt_message"; then
+            echo -e "${GREEN}📦 Ejecutando ${script_name}.sh ...${NC}"
+            chmod +x "$script_path"
+            sudo bash "$script_path"
+        else
+            echo -e "${YELLOW}⏭️  Saltando ${script_name}${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️  No se encuentra ${script_path} - saltando${NC}"
+    fi
+}
+
+# Función auxiliar para preguntar
+ask_yes_no() {
+    local prompt="$1 (y/n): "
+    local answer
+    read -r -p "$prompt" answer
+    case "$answer" in
+        [yY]|[yY][eE][sS]) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# -----------------------------------------------------------------------------
 # 3. Instalación de programas (orden lógico)
 # -----------------------------------------------------------------------------
 
@@ -77,10 +109,14 @@ run_installer "zsh"
 # kitty.sh: Terminal Kitty
 run_installer "kitty"
 
+# docker.sh: Docker
 run_installer "docker"
 
 # fonts.sh: Nerd Fonts
 run_installer "fonts"
+
+# Módulos opcionales (con pregunta)
+run_optional_installer "riscv" "¿Deseas instalar el entorno de desarrollo RISC-V? (tarda ~1 hora)"
 
 # -----------------------------------------------------------------------------
 # 4. Enlaces simbólicos de configuración
