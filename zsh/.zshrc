@@ -131,3 +131,7 @@ alias Dotfiles='cd ~/.dotfiles'
 export PATH=$HOME/.local/xPacks/@xpack-dev-tools/riscv-none-elf-gcc/latest/bin:$PATH
 export RISCV=$HOME/riscv-lab/riscv
 
+export RISCV="/opt/riscv"
+export PATH="$RISCV/bin:$PATH"
+
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -142,7 +142,7 @@ rm -rf "$WORKDIR"
 # -----------------------------------------------------------------------------
 print_step "¡Instalación completada! Verificando herramientas..."
 su - "$SUDO_USER" -c "source $USER_HOME/.zshrc && riscv64-unknown-elf-gcc --version"
-su - "$SUDO_USER" -c "source $USER_HOME/.zshrc && spike --version"
+su - "$SUDO_USER" -c "source $USER_HOME/.zshrc && spike --h"
 su - "$SUDO_USER" -c "source $USER_HOME/.zshrc && pk --version" || echo "pk se encuentra en $RISCV/riscv64-unknown-elf/bin/pk"
 
 echo -e "${GREEN}✅ Instalación exitosa.${NC}"
