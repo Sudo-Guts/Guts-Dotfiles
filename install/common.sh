@@ -49,7 +49,7 @@ if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] || [[ "$XDG_SESSION_TYPE" == "x11" 
     if echo "$CURRENT_LIST" | grep -q "$KEY_NAME" || echo "$CURRENT_LIST" | grep -q "$KEY_COMMAND"; then
         echo -e "${YELLOW}   Atajo para Kitty ya existe. Saltando.${NC}"
     else
-        # Encontrar el siguiente índice disponible (custom0, custom1, ...)
+        # Encontrar el siguiente índice disponible
         MAX_INDEX=0
         for i in $(seq 0 100); do
             if echo "$CURRENT_LIST" | grep -q "custom$i"; then
